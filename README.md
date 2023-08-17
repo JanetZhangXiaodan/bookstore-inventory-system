@@ -36,9 +36,16 @@ Running Main.java via local terminal:
 
 
 ## Further improvements on Code.
-### Adding a new book with the same ISBN is not possible - by design True as each book should have an unique ISBN
-### User SpringBoot JPA data instead of java.sql - less sql injection vulnerabilities 
-### 
+### 1. Adding a new book with the same ISBN is not possible - by design True as each book should have an unique ISBN
+### 2. User SpringBoot JPA data instead of java.sql - less sql injection vulnerabilities 
+
 
 ## Thoughts on additional bonus points:
-
+### 1. Search and Filter Functionality: Not implemented in scripts. Can be done through MySQL client command prompt.
+### 2. Authentication and Authorization: Not implemented in scripts.
+#### 2a. User Model and Repository: Create a User model class to store user information, such as username, password, and roles. Implement a repository to manage user data.
+#### 2b. User Service: Create a service class that interacts with the user repository. Implement methods for user registration and fetching user details by username.
+#### 2c. Security Configuration: Configure Spring Security to manage user authentication and authorization. Create a security configuration class to define authentication providers, password encoders, and security rules.
+#### 2d. Front-End Integration: Update front-end to handle user registration and login forms. 
+### 3. Error Handling and Logging: Use of logger and catch exceptions
+### 4. Performance Optimization: Use of in-memory inventory over communicating with MySQL db all the time
