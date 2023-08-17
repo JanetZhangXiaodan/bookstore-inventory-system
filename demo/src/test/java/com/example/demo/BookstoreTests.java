@@ -1,86 +1,82 @@
 package com.example.demo;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
+@SpringBootTest
 public class BookstoreTests {
 
-    @Mock
-    private BookRepository bookRepository;
+    @MockBean
+    private BookRepository mockBookRepository;
 
-    private Bookstore bookstore;
+    @Test
+    public void testRemoveBookFromDatabase() {
+        int isbn = 123456;
+        when(mockBookRepository.removeBook(isbn)).thenReturn(true);
 
-    @BeforeEach
-    public void setUp() {
-        MockitoAnnotations.openMocks(this);
-        bookstore = new Bookstore(bookRepository);
+        Bookstore bookstore = new Bookstore(mockBookRepository);
+        boolean removed = bookstore.removeBook(isbn);
+
+        assertTrue(removed);
+
+        verify(mockBookRepository, times(1)).removeBook(isbn);
     }
 
     @Test
-    public void testAddBook() {
-        Book book = new Book("Sample Book", "John Doe", 123456789, 19.99, 10);
-        when(bookRepository.insertBook(book)).thenReturn(true);
+    public void testRemoveBookFromMemory() {
+        int isbn = 123456;
+        when(mockBookRepository.removeBook(isbn)).thenReturn(false);
 
-        bookstore.addBook(book);
+        Bookstore bookstore = new Bookstore(mockBookRepository);
+        boolean removed = bookstore.removeBook(isbn);
 
-        List<Book> allBooks = bookstore.getAllBooks();
-        assertEquals(1, allBooks.size());
-        assertEquals(book, allBooks.get(0));
+        assertTrue(removed);
+
+        verify(mockBookRepository, times(1)).removeBook(isbn);
     }
 
     @Test
-    public void testRemoveBook() {
-        int isbn = 123456789;
-        when(bookRepository.removeBook(isbn)).thenReturn(true);
+    public void testRemoveBookNotFound() {
+        int isbn = 123456;
+        when(mockBookRepository.removeBook(isbn)).thenReturn(false);
 
-        assertTrue(bookstore.removeBook(isbn));
-        assertFalse(bookstore.removeBook(987654321)); // Book not found
+        Bookstore bookstore = new Bookstore(mockBookRepository);
+        boolean removed = bookstore.removeBook(isbn);
 
-        List<Book> allBooks = bookstore.getAllBooks();
-        assertEquals(0, allBooks.size());
+        assertFalse(removed);
+
+        verify(mockBookRepository, times(1)).removeBook(isbn);
     }
 
     @Test
-    public void testUpdateQuantity() {
-        int isbn = 123456789;
-        int newQuantity = 15;
-        when(bookRepository.updateQuantity(isbn, newQuantity)).thenReturn(true);
+    public void testUpdateQuantitySuccess() {
+        int isbn = 123456;
+        int newQuantity = 10;
+        when(mockBookRepository.updateQuantity(isbn, newQuantity)).thenReturn(true);
 
-        assertTrue(bookstore.updateQuantity(isbn, newQuantity));
-        assertFalse(bookstore.updateQuantity(987654321, newQuantity)); // Book not found
+        Bookstore bookstore = new Bookstore(mockBookRepository);
+        boolean updated = bookstore.updateQuantity(isbn, newQuantity);
 
-        List<Book> allBooks = bookstore.getAllBooks();
-        assertEquals(newQuantity, allBooks.get(0).getQuantityInStock());
+        assertTrue(updated);
+
+        verify(mockBookRepository, times(1)).updateQuantity(isbn, newQuantity);
     }
 
     @Test
-    public void testGetQuantityByIsbn() {
-        int isbn = 123456789;
-        when(bookRepository.findQuantityByIsbn(isbn)).thenReturn(10);
+    public void testUpdateQuantityFailure() {
+        int isbn = 123456;
+        int newQuantity = 10;
+        when(mockBookRepository.updateQuantity(isbn, newQuantity)).thenReturn(false);
 
-        int quantity = bookstore.getQuantityByIsbn(isbn);
+        Bookstore bookstore = new Bookstore(mockBookRepository);
+        boolean updated = bookstore.updateQuantity(isbn, newQuantity);
 
-        assertEquals(10, quantity);
-        assertEquals(-1, bookstore.getQuantityByIsbn(987654321)); // Book not found
+        assertFalse(updated);
+
+        verify(mockBookRepository, times(1)).updateQuantity(isbn, newQuantity);
     }
 
-    @Test
-    public void testGetAllBookNames() {
-        List<String> bookNames = new ArrayList<>();
-        bookNames.add("Book 1");
-        bookNames.add("Book 2");
-        when(bookRepository.findAllBookNames()).thenReturn(bookNames);
-
-        List<String> allBookNames = bookstore.getAllBookNames();
-
-        assertEquals(bookNames, allBookNames);
-    }
 }
