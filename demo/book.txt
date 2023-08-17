@@ -1,0 +1,5 @@
+1, Sample Book 1,John Doe,123456789,19.99,10
+2, Sample Book 2,Jane Smith,987654321,24.99,15
+3, Another Book,Mark Johnson,555555555,12.99,5
+4, Great Read,Susan Lee,111111111,9.99,20
+5, Java Programming,David Brown,444444444,29.99,8
