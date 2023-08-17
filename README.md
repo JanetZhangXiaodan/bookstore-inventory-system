@@ -1,5 +1,9 @@
 # bookstore-inventory-system
 
+Singleton design pattern
+
+MySQL 8.1 for storing book information
+
 An initial book stock inventory is uploaded via DatabaseSetup.java
 ![image](https://github.com/JanetZhangXiaodan/bookstore-inventory-system/assets/15668158/56686501-4d7f-4da1-8f38-6196608fbad9)
 
@@ -8,12 +12,12 @@ Running Main.java via local terminal:
 ![image](https://github.com/JanetZhangXiaodan/bookstore-inventory-system/assets/15668158/64559dfe-a3a5-4d9f-b5bf-1648d4e32338)
 
 
-## 1. Add a book to the inventory.\
+## 1. Add a book to the inventory.
 ![image](https://github.com/JanetZhangXiaodan/bookstore-inventory-system/assets/15668158/3a5ea1d7-d01d-420b-9352-b3c40460f0c0)
 ![image](https://github.com/JanetZhangXiaodan/bookstore-inventory-system/assets/15668158/d547accb-8f85-4f3c-a73e-abc1edbb0ea2)
 
 
-## 2. Remove a book from the inventory.\
+## 2. Remove a book from the inventory.
 ![image](https://github.com/JanetZhangXiaodan/bookstore-inventory-system/assets/15668158/edb54ac9-abdc-409d-87db-62d3f5554c9e)
 ![image](https://github.com/JanetZhangXiaodan/bookstore-inventory-system/assets/15668158/b7b616f3-05f7-47c4-9a5c-235bd794608c)
 
@@ -29,4 +33,12 @@ Running Main.java via local terminal:
 ## 5. List all books in the inventory.
 ![image](https://github.com/JanetZhangXiaodan/bookstore-inventory-system/assets/15668158/21f6f7b6-9972-4b4e-8e7b-78e100a45d77)
 ![image](https://github.com/JanetZhangXiaodan/bookstore-inventory-system/assets/15668158/5e581911-7e8b-4460-99b3-08cfe68b27b9)
+
+
+## Further improvements on Code.
+### Adding a new book with the same ISBN is not possible - by design True as each book should have an unique ISBN
+### User SpringBoot JPA data instead of java.sql - less sql injection vulnerabilities 
+### 
+
+## Thoughts on additional bonus points:
 
