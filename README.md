@@ -9,7 +9,7 @@ MySQL 8.1 for storing book information
 An initial book stock inventory is uploaded via DatabaseSetup.java on Main.java.\
 Book.java contains getters and setters method.\
 Bookstore.java: defines the functions the user can call on the microservice\
-BookRepository.java: defines the SQL queries to execute which connection details is defined in DataSourceConfig.java
+BookRepository.java: defines the SQL queries to execute where connection details are defined in DataSourceConfig.java
 
 ![image](https://github.com/JanetZhangXiaodan/bookstore-inventory-system/assets/15668158/56686501-4d7f-4da1-8f38-6196608fbad9)
 
