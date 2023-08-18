@@ -1,5 +1,7 @@
 # bookstore-inventory-system
 
+IDE: Visual Studio Code
+
 Singleton design pattern
 
 MySQL 8.1 for storing book information
