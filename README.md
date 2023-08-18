@@ -15,6 +15,8 @@ BookRepository.java: defines the SQL queries to execute which connection details
 
 Running Main.java via local terminal:
 ![image](https://github.com/JanetZhangXiaodan/bookstore-inventory-system/assets/15668158/9c6461d1-e8f0-43ff-86d6-72d9b1edc522)
+
+Checking output on MySQL client:
 ![image](https://github.com/JanetZhangXiaodan/bookstore-inventory-system/assets/15668158/64559dfe-a3a5-4d9f-b5bf-1648d4e32338)
 
 
